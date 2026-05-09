@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Kanban 4.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>💊 Pharma Kanban 4.0</h1>
+        <p>Suivi de Production Pharmaceutique - Industrie 4.0</p>
+    </header>
+
+    <nav>
+        <button onclick="afficherPage('production')" class="nav-btn active" id="btn-production">📋 Production</button>
+        <button onclick="afficherPage('equipe')" class="nav-btn" id="btn-equipe">👥 Equipe</button>
+    </nav>
+
+    <main>
+        <!-- Page Production -->
+        <div id="page-production" class="page active">
+            <button class="btn-ajouter" onclick="ouvrirFormulaire()">+ Ajouter un Lot</button>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <h3 id="total-lots">0</h3>
+                    <p>📦 Total Lots</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-faire">0</h3>
+                    <p>📋 À Faire</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-cours">0</h3>
+                    <p>⚙️ En cours</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-controle">0</h3>
+                    <p>🔍 Contrôle</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-termine">0</h3>
+                    <p>✅ Terminé</p>
+                </div>
+            </div>
+
+            <div class="kanban-board">
+                <div class="column" data-status="À Faire">
+                    <h2>📋 À Faire</h2>
+                    <div class="cards" id="a-faire"></div>
+                </div>
+                
+                <div class="column" data-status="En cours">
+                    <h2>⚙️ En cours</h2>
+                    <div class="cards" id="en-cours"></div>
+                </div>
+                
+                <div class="column" data-status="Contrôle Qualité">
+                    <h2>🔍 Contrôle Qualité</h2>
+                    <div class="cards" id="controle"></div>
+                </div>
+                
+                <div class="column" data-status="Terminé">
+                    <h2>✅ Terminé</h2>
+                    <div class="cards" id="termine"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Equipe -->
+        <div id="page-equipe" class="page">
+            <div class="equipe-grid" id="equipe-list"></div>
+        </div>
+    </main>
+
+    <!-- Modal Formulaire -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fermerFormulaire()">&times;</span>
+            <h2>➕ Ajouter un Lot</h2>
+            <form onsubmit="ajouterLot(event)">
+                <input type="text" id="new-id" placeholder="ID Lot (ex: LOT-006)" required>
+                <input type="text" id="new-medicament" placeholder="Médicament" required>
+                <input type="number" id="new-quantite" placeholder="Quantité" required>
+                <select id="new-statut" required>
+                    <option value="À Faire">À Faire</option>
+                    <option value="En cours">En cours</option>
+                    <option value="Contrôle Qualité">Contrôle Qualité</option>
+                    <option value="Terminé">Terminé</option>
+                </select>
+                <input type="text" id="new-ligne" placeholder="Ligne (ex: Ligne A)" required>
+                <input type="text" id="new-operateur" placeholder="Opérateur" required>
+                <button type="submit">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
